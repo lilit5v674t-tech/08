@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"><title>Овен</title>
+    <style>
+        body { background: #03050d; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; background-image: radial-gradient(circle at 15% 20%, #fff 1px, transparent 1px), radial-gradient(circle at 85% 40%, #fff 1.5px, transparent 1.5px), radial-gradient(circle at 30% 30%, #14224d 0%, #03050d 60%); }
+        .st { position: absolute; top: -50px; width: 2px; height: 2px; background: #fff; background: linear-gradient(-45deg, #fff, transparent); filter: drop-shadow(0 0 6px #4fc3f7); animation: s 4s linear infinite; }
+        @keyframes s { 0% { transform: translate(0, 0) rotate(-45deg) scale(0); opacity: 0; width: 0; } 10% { opacity: 1; width: 80px; } 30% { transform: translate(400px, 400px) rotate(-45deg) scale(1); opacity: 0; } }
+        .st:nth-child(1) { left: 20%; animation-duration: 5s; } .st:nth-child(2) { left: 60%; animation-delay: 1.5s; }
+        .book { position: relative; width: 850px; height: 480px; background: linear-gradient(135deg, #e0e4ec, #b8bfc8); border: 3px solid #fff; border-radius: 12px; padding: 12px; display: flex; justify-content: space-between; z-index: 1; }
+        .book::after { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 20px; transform: translateX(-50%); background: linear-gradient(to right, rgba(0,0,0,0.15), transparent 50%, rgba(0,0,0,0.18)); }
+        .page { width: 48%; height: 100%; box-sizing: border-box; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; border-radius: 6px; background: #fff; }
+        h1 { font-size: 18px; color: #1e293b; text-align: center; margin: 0 0 10px 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 6px; font-weight: bold; }
+        p { font-size: 15px; line-height: 1.5; text-align: justify; margin: 0; color: #0f172a; font-weight: 500; }
+        
+        /* Космическое окно и неоновые звезды */
+        .space { width: 100%; height: 160px; background: radial-gradient(circle, #081226, #02040d); border-radius: 6px; border: 2px solid #475569; }
+        .star-core { fill: #fff; filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 10px #3b82f6); }
+        .hamal-core { fill: #ffb732; filter: drop-shadow(0 0 8px #ffb732) drop-shadow(0 0 18px #ff8f00); animation: pulse 2.5s infinite ease-in-out; transform-origin: 380px 140px; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.25); } }
+        
+        .tnt { background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 10px; font-style: italic; font-size: 14px; color: #1e293b; cursor: pointer; }
+        .ch { display: flex; flex-direction: column; gap: 8px; }
+        button { background: #f8fafc; border: 2px solid #475569; padding: 9px 12px; font-size: 13px; color: #0f172a; cursor: pointer; font-weight: bold; border-radius: 6px; }
+        button:hover { color: #fff; background: #3b82f6; border-color: #3b82f6; }
+    </style>
+</head>
+<body>
+
+<div class="st"></div><div class="st"></div>
+
+<div class="book">
+    <div class="page">
+        <h1 id="tl">Тема</h1><p id="tx">Выбери тему.</p>
+        
+        <!-- Обновленное красивое созвездие -->
+        <svg class="space" viewBox="0 0 500 350">
+            <!-- Траектория созвездия -->
+            <line x1="100" y1="280" x2="220" y2="200" stroke="rgba(79, 195, 247, 0.5)" stroke-width="2" stroke-dasharray="3" />
+            <line x1="220" y1="200" x2="380" y2="140" stroke="rgba(79, 195, 247, 0.5)" stroke-width="2" stroke-dasharray="3" />
+            <line x1="380" y1="140" x2="410" y2="180" stroke="rgba(79, 195, 247, 0.5)" stroke-width="2" stroke-dasharray="3" />
+            
+            <!-- Шаблон для эффекта лучей звезды -->
+            <defs>
+                <g id="rays"><line x1="-12" y1="0" x2="12" y2="0" stroke="#fff" stroke-width="1.5" opacity="0.7"/><line x1="0" y1="-12" x2="0" y2="12" stroke="#fff" stroke-width="1.5" opacity="0.7"/></g>
+                <g id="h-rays"><line x1="-20" y1="0" x2="20" y2="0" stroke="#ffb732" stroke-width="2" /><line x1="0" y1="-20" x2="0" y2="20" stroke="#ffb732" stroke-width="2" /></g>
+            </defs>
+
+            <!-- Отрисовка неоновых объектов -->
+            <use href="#rays" x="100" y="280"/><circle class="star-core" cx="100" cy="280" r="4" />
+            <use href="#rays" x="220" y="200"/><circle class="star-core" cx="220" cy="200" r="5" />
+            
+            <!-- Пульсирующий Хамаль -->
+            <g class="hamal-core">
+                <use href="#h-rays" x="380" y="140"/>
+                <circle cx="380" cy="140" r="8" fill="#fff" />
+            </g>
+            
+            <use href="#rays" x="410" y="180" transform="scale(0.7)" style="transform-origin: 410px 180px;"/><circle class="star-core" cx="410" cy="180" r="3" />
+        </svg>
+    </div>
+    <div class="page">
+        <h1>Овен</h1>
+        <div class="tnt" id="tn" onclick="play()">🐏 Овен: «Ну давай, кликни на меня!»</div>
+        <div class="ch" id="ch"></div>
+    </div>
+</div>
+
+<script>
+    const db = {
+        stars: ["Хамаль — самый яркий гигант Овна, в 90 раз мощнее Солнца.", "Шератан означает 'два знака', отмечала равноденствие.", "Мезартим — сложная двойная система, открытая в 1664 году.", "Бхарани названа в честь древней индийской лунной стоянки."],
+        space: ["В космосе царит тишина — там нет воздуха для звука.", "Один день на Венере длится дольше, чем её целый год.", "Чайная ложка нейтронной звезды весит миллиарды тонн.", "Каждые сутки на Землю падает 100 тонн космической пыли."]
+    };
+    const tnts = ["🐏 Овен: «Ты умеешь читать? Я удивлен!»", "🐏 Овен: «Стал ли ты умнее? Сомневаюсь...»", "🐏 Овен: «Хватит терзать страницы, иди делом займись!»"];
+    let ac = null;
+
+    function init() {
+        if (ac) return; ac = new (window.AudioContext || window.webkitAudioContext)();
+        const nt = [523.25, 659.25, 783.99, 880.00];
+        function ambient() {
+            let o = ac.createOscillator(), g = ac.createGain(), d = ac.createDelay(), f = ac.createGain();
+            o.type = 'sine'; o.frequency.value = nt[Math.floor(Math.random() * nt.length)]; d.delayTime.value = 0.4; f.gain.value = 0.25;
+            g.gain.setValueAtTime(0, ac.currentTime); g.gain.linearRampToValueAtTime(0.015, ac.currentTime + 0.02); g.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + 3);
+            o.connect(g).connect(ac.destination); g.connect(d).connect(f).connect(d).connect(ac.destination);
+            o.start(); o.stop(ac.currentTime + 3); setTimeout(ambient, 4000);
+        }
+        ambient();
+    }
+    function fx() {
+        let b = ac.createBuffer(1, ac.sampleRate * 0.2, ac.sampleRate), d = b.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+        let s = ac.createBufferSource(), f = ac.createBiquadFilter(), g = ac.createGain(); s.buffer = b; f.type = 'bandpass'; f.frequency.value = 1200; f.Q.value = 1.5;
+        g.gain.setValueAtTime(0, ac.currentTime); g.gain.linearRampToValueAtTime(0.05, ac.currentTime + 0.03); g.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + 0.15);
+        s.connect(f).connect(g).connect(ac.destination); s.start();
+    }
+    function play() {
+        init(); const now = ac.currentTime;
+        let v = ac.createOscillator(), vg = ac.createGain(), o1 = ac.createOscillator(), o2 = ac.createOscillator(), f = ac.createBiquadFilter(), g = ac.createGain();
+        v.frequency.value = 12; vg.gain.value = 35; o1.type = 'sawtooth'; o1.frequency.value = 125; o2.type = 'sawtooth'; o2.frequency.value = 250; f.type = 'bandpass'; f.frequency.value = 650; f.Q.value = 2;
+        g.gain.setValueAtTime(0, now); g.gain.linearRampToValueAtTime(0.12, now + 0.08); g.gain.exponentialRampToValueAtTime(0.001, now + 0.7);
+        v.connect(vg); vg.connect(o1.frequency); vg.connect(o2.frequency); o1.connect(f); o2.connect(f); f.connect(g).connect(ac.destination);
+        v.start(now); o1.start(now); o2.start(now); v.stop(now + 0.7); o1.stop(now + 0.7); o2.stop(now + 0.7);
+    }
+    function tnt() { document.getElementById('tn').innerText = tnts[Math.floor(Math.random() * tnts.length)]; }
+
+    function menu() {
+        document.getElementById('tl').innerText = "Выбор темы"; document.getElementById('tx').innerText = "Выбери категорию.";
+        const c = document.getElementById('ch'); c.innerHTML = '';
+        [{t: "✨ Звезды Овна", k: "stars"}, {t: "🚀 Космос", k: "space"}].forEach(cat => {
+            let b = document.createElement('button'); b.innerText = cat.t; b.onclick = () => { init(); fx(); tnt(); list(cat.k); }; c.appendChild(b);
+        });
+    }
+    function list(k) {
+        document.getElementById('tl').innerText = k === "stars" ? "Звезды" : "Космос"; document.getElementById('tx').innerText = "Выбери один из четырех фактов.";
+        const c = document.getElementById('ch'); c.innerHTML = '';
+        for (let i = 0; i < 4; i++) {
+            let b = document.createElement('button'); b.innerText = `📖 Факт №${i + 1}`; b.onclick = () => { fx(); tnt(); page(k, i); }; c.appendChild(b);
+        }
+        let b = document.createElement('button'); b.innerText = "⬅️ Назад"; b.onclick = () => { fx(); menu(); }; c.appendChild(b);
+    }
+    function page(k, i) {
+        document.getElementById('tl').innerText = `Факт №${i + 1}`; document.getElementById('tx').innerText = db[k][i];
+        const c = document.getElementById('ch'); c.innerHTML = '';
+        let b1 = document.createElement('button'); b1.innerText = "⬅️ К списку"; b1.onclick = () => { fx(); list(k); }; c.appendChild(b1);
+        let b2 = document.createElement('button'); b2.innerText = "🏠 В меню"; b2.onclick = () => { fx(); menu(); }; c.appendChild(b2);
+    }
+    menu();
+</script>
+</body>
+</html>
